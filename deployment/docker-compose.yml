@@ -18,6 +18,8 @@ services:
             dockerfile: Dockerfile
         ports:
             - 8000:8000
+        volumes:
+            - ../:/var/www/html
         networks:
             - app-network
 
