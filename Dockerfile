@@ -126,9 +126,7 @@ RUN composer install \
     --no-autoloader \
     --no-ansi \
     --no-scripts \
-    --audit
-
-RUN php artisan key:generate
+    --audit && php artisan key:generate
 
 COPY --link --chown=${USER}:${USER} . .
 COPY --link --chown=${USER}:${USER} --from=build ${ROOT}/public public
