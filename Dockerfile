@@ -126,7 +126,7 @@ RUN composer install \
     --no-autoloader \
     --no-ansi \
     --no-scripts \
-    --audit && php artisan key:generate
+    --audit
 
 COPY --link --chown=${USER}:${USER} . .
 COPY --link --chown=${USER}:${USER} --from=build ${ROOT}/public public
@@ -151,7 +151,7 @@ RUN composer install \
     --no-interaction \
     --no-ansi \
     --no-dev \
-    && composer clear-cache
+    && composer clear-cache && php artisan key:generate
 
 RUN chmod +x /usr/local/bin/start-container /usr/local/bin/healthcheck
 
