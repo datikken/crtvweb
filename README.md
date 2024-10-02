@@ -8,3 +8,4 @@ docker build . -t lara-home && docker run -p 80:8000 lara-home
 ```shell
 mkcert crtvweb.ru "*.crtvweb.ru" crtvweb.ru localhost 127.0.0.1 ::1
 ```
+https://github.com/exaco/laravel-octane-dockerfile/blob/main/deployment/octane/RoadRunner/supervisord.roadrunner.conf
