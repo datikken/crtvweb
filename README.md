@@ -1,7 +1,13 @@
 ## To start
 
+## To test image
 ```shell
 docker build . -t lara-home && docker run -d -p 80:8000 lara-home
+```
+
+## To deploy
+```shell
+(cd deployment && docker compose up -d --build)
 ```
 
 ## certs
