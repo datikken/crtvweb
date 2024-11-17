@@ -11,10 +11,10 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.HOST }}
           username: root
+          host: ${{ secrets.HOST }}
           password: ${{ secrets.PASSWORD }}
-          script: whoami && pwd
+          script: cd ./crtvweb && git pull && composer install && npm install && npm run build
 #  tests:
 #    runs-on: ubuntu-latest
 #    steps:
