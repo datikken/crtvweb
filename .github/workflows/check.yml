@@ -4,7 +4,28 @@ on:
     branches:
       - master
 jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Install composer dependencies
+        run: composer install --no-scripts
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Compile assets
+        run: npm run build
   build:
+    needs: tests
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -15,23 +36,3 @@ jobs:
           host: ${{ secrets.HOST }}
           password: ${{ secrets.PASSWORD }}
           script: cd ./crtvweb && git pull && (cd deployment && docker compose up -d --build)
-#  tests:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 1
-#
-#      - name: Install PHP
-#        uses: shivammathur/setup-php@v2
-#        with:
-#          php-version: 8.2
-#
-#      - name: Install composer dependencies
-#        run: composer install --no-scripts
-#
-#      - name: Install NPM dependencies
-#        run: npm install
-#
-#      - name: Compile assets
-#        run: npm run build
