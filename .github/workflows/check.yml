@@ -14,7 +14,7 @@ jobs:
           username: root
           host: ${{ secrets.HOST }}
           password: ${{ secrets.PASSWORD }}
-          script: cd ./crtvweb && git pull && composer install && npm install && npm run build
+          script: cd ./crtvweb && git pull && (cd deployment && docker compose up -d --build)
 #  tests:
 #    runs-on: ubuntu-latest
 #    steps:
